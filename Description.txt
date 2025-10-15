@@ -1,0 +1,116 @@
+# Address Book Application - Overview
+
+This C program implements a simple command-line address book where you can:
+
+- **Create contacts:** Add new contacts with name, phone, and email.
+- **Search contacts:** Find contacts by name, phone, or email, allowing partial matches.
+- **Edit contacts:** Update name, phone, or email of an existing contact.
+- **Delete contacts:** Remove contacts from the address book.
+- **List contacts:** View all contacts sorted by name, phone, or email.
+- **Save and load contacts:** Automatically save contacts to a file and load them at startup.
+
+---
+
+# Detailed Overview
+
+## 1. Main Menu (User Interface)
+- Displays options 1 through 6 to the user.
+- Loops until user selects "Save and Exit".
+- Calls respective functions for each choice.
+    Address Book Menu:
+        #1.Create contact
+        #2.Search contact
+        #3.Edit contact
+        #4.Delete contact
+        #5.List all contacts
+        #6.Save and Exit
+
+## 2. Contact Storage and Initialization
+- Uses an `AddressBook` struct holding an array of `Contact`s.
+- On start, loads existing contacts from a file.
+- Limits number of contacts to `MAX_CONTACTS`.
+
+## 3. Creating a Contact
+- Prompts user for name, phone, and email.
+- Validates each input:
+  - Name must only contain letters and spaces.
+  - Phone must be exactly 10 digits and unique.
+  - Email must have correct format and be unique.
+- On successful validation, adds the contact.
+    Example:
+    Enter the name: John Doe
+    Enter phone number: 9876543210
+    Enter email id: john@example.com
+    <------Contact created successfully✅------>
+
+## 4. Searching Contacts
+- Lets user search by name, phone, or email.
+- Accepts partial and case-insensitive matches (for name).
+- Displays all matching contacts with their details.
+- Shows a "not found" message if no match.
+    Example:
+    Search by contact:
+    1.Search by Name
+    2.Search by Phone
+    3.Search by email
+    4.Exit
+    Enter your Choice: 1
+    Enter the name: John
+
+    Contact[1]
+    John Doe
+    9876543210
+    john@example.com
+
+## 5. Editing a Contact
+- Uses the search feature to find the contact to edit.
+- Allows editing the name, phone, or email with validation.
+- Updates the contact on successful edits.
+    Example:
+    Enter the name to search for edit: John Doe
+    Edit the contact Menu:
+    1.Edit the Name
+    2.Edit the phone
+    3.Edit the email
+    4.Exit
+    Enter the choice: 2
+    Enter the new_phone number: 1234567890
+    <-----Successfully edited✅----->
+
+## 6. Deleting a Contact
+- Searches for the contact to delete.
+- If found, removes it by shifting subsequent contacts.
+- Decreases the total contact count.
+    Example:
+    Enter the phone number to delete: 1234567890
+    <-----Contact successfully Deleted✅----->
+
+## 7. Listing Contacts
+- Lists all contacts sorted by a user-selected criteria:
+  - Name, phone, or email.
+- Uses bubble sort to sort the contacts before display.
+    Example:
+    Select sort criteria:
+    1. Sort by name
+    2. Sort by phone
+    3. Sort by email
+    Enter your choice: 1
+
+    <-----CONTACTS LISTS----->
+    Contact
+
+    Alice Johnson       1234567890    alice@example.com
+    John Doe            9876543210    john@example.com
+
+## 8. File Operations
+- Contacts are saved to a text file on exit.
+- Each contact stored as: `name,phone,email` on a new line.
+- On startup, loads contacts from this file to memory.
+    Example:
+    Alice Johnson,1234567890,alice@example.com
+    John Doe,9876543210,john@example.com
+    
+---
+
+# Example Usage
+
